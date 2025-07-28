@@ -1,0 +1,8 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\XmlConfiguration\Block\CustomerRoles" name="customer.roles.tree" template="Magenest_XmlConfiguration::customer_roles.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

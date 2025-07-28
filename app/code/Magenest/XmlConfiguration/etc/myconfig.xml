@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magenest_XmlConfiguration:etc/myconfig.xsd">
+    <aclCustomer>
+        <resources>
+            <resource id="Customer_Feature" title="Customer Features" sortOrder="10">
+                <customer_group>0</customer_group>
+                <resource id="Customer_Account" title="Edit Account Info" sortOrder="10">
+                    <customer_group>1</customer_group>
+                </resource>
+                <resource id="Customer_Wishlist" title="Wishlist" sortOrder="20">
+                    <customer_group>2</customer_group>
+                </resource>
+                <resource id="Customer_Newsletter" title="Newsletter" sortOrder="30">
+                    <customer_group>3</customer_group>
+                </resource>
+                <resource id="Customer_Checkout" title="Checkout" sortOrder="40">
+                    <customer_group>4</customer_group>
+                </resource>
+            </resource>
+            <resource id="Customer_Feature_2" title="Customer Features 2" sortOrder="10">
+                <customer_group>0</customer_group>
+                <resource id="Customer_Account" title="Edit Account Info" sortOrder="10">
+                    <customer_group>1</customer_group>
+                </resource>
+                <resource id="Customer_Checkout" title="Checkout" sortOrder="40">
+                    <customer_group>4</customer_group>
+                </resource>
+            </resource>
+        </resources>
+    </aclCustomer>
+</config>

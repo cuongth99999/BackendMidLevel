@@ -1,0 +1,15 @@
+<?php
+
+namespace Magenest\XmlConfiguration\Model\Config;
+
+class Reader extends \Magento\Framework\Config\Reader\Filesystem
+{
+    /**
+     * List of identifier attributes for merging
+     *
+     * @var array
+     */
+    protected $_idAttributes = [
+        '/aclCustomer/resources/(/resource)+' => 'id'
+    ];
+}

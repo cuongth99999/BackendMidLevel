@@ -1,0 +1,23 @@
+<?php
+
+use Magenest\XmlConfiguration\Block\CustomerRoles;
+
+/** @var $block CustomerRoles */
+$roles = $block->getRoles();
+$resources = !empty($roles) ? $roles['resources'] : [];
+
+function renderTree($resources)
+{
+    echo '<ul>';
+    foreach ($resources as $resource) {
+        echo '<li>';
+        echo $resource['title'] . ' (Groups: ' . implode(', ', $resource['customer_groups']) . ')';
+        if (!empty($resource['children'])) {
+            renderTree($resource['children']);
+        }
+        echo '</li>';
+    }
+    echo '</ul>';
+}
+
+renderTree($resources);
