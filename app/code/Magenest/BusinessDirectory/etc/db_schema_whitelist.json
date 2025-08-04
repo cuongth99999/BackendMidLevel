@@ -1,0 +1,20 @@
+{
+    "business_directory": {
+        "column": {
+            "entity_id": true,
+            "customer_directory": true,
+            "description": true,
+            "consumer_frontend": true,
+            "business_frontend": true,
+            "notes": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "BUSINESS_DIRECTORY_CUSTOMER_DIRECTORY": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
