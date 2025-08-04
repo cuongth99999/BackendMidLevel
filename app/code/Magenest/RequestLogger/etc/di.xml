@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Configure custom logger handler -->
+    <virtualType name="requestLogHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/request.log</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Configure logger instance with custom handler -->
+    <virtualType name="requestLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="request_log" xsi:type="object">requestLogHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Configure RequestLogger class to use custom logger -->
+    <type name="Magenest\RequestLogger\Model\RequestLogger">
+        <arguments>
+            <argument name="logger" xsi:type="object">requestLogger</argument>
+        </arguments>
+    </type>
+</config>
