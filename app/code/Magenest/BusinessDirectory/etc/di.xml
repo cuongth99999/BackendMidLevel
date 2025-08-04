@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- API Interface Implementation -->
+    <preference for="Magenest\BusinessDirectory\Api\DirectoryRepositoryInterface"
+                type="Magenest\BusinessDirectory\Model\DirectoryRepository"/>
+    <preference for="Magenest\BusinessDirectory\Api\Data\DirectoryInterface"
+                type="Magenest\BusinessDirectory\Model\Directory"/>
+
+    <!-- Cache Configuration -->
+    <type name="Magento\Framework\App\Cache\Type\FrontendPool">
+        <arguments>
+            <argument name="types" xsi:type="array">
+                <item name="business_directory" xsi:type="string">page_cache</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugin to clear business_directory cache when config cache is cleared -->
+    <type name="Magento\Framework\App\Cache\TypeList">
+        <plugin name="magenest_business_directory_cache_clear"
+                type="Magenest\BusinessDirectory\Plugin\CacheTypeList"/>
+    </type>
+
+    <!-- Collection Processor for Search Results -->
+    <virtualType name="Magenest\BusinessDirectory\Model\Api\SearchCriteria\DirectoryCollectionProcessor"
+                 type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor</item>
+                <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magenest\BusinessDirectory\Model\DirectoryRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Magenest\BusinessDirectory\Model\Api\SearchCriteria\DirectoryCollectionProcessor</argument>
+        </arguments>
+    </type>
+</config>

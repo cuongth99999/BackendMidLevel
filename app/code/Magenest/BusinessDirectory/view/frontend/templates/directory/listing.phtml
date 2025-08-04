@@ -1,0 +1,41 @@
+<?php
+/** @var \Magenest\BusinessDirectory\Block\Directory\Listing $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<div class="business-directory-listing">
+    <div class="table-wrapper">
+        <table class="data table">
+            <caption class="table-caption"><?= $escaper->escapeHtml(__('Business Directory')) ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col customer-directory"><?= $escaper->escapeHtml(__('Customer Directory')) ?></th>
+                    <th scope="col" class="col description"><?= $escaper->escapeHtml(__('Description')) ?></th>
+                    <th scope="col" class="col consumer-frontend"><?= $escaper->escapeHtml(__('Consumer Frontend')) ?></th>
+                    <th scope="col" class="col business-frontend"><?= $escaper->escapeHtml(__('Business Frontend')) ?></th>
+                    <th scope="col" class="col notes"><?= $escaper->escapeHtml(__('Notes')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($block->getDirectoryList() as $directory): ?>
+                    <tr>
+                        <td data-th="<?= $escaper->escapeHtml(__('Customer Directory')) ?>" class="col customer-directory">
+                            <?= $escaper->escapeHtml($directory->getCustomerDirectory()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Description')) ?>" class="col description">
+                            <?= $escaper->escapeHtml($directory->getDescription()) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Consumer Frontend')) ?>" class="col consumer-frontend">
+                            <?= $escaper->escapeHtml($block->getConsumerFrontendValue($directory->getConsumerFrontend())) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Business Frontend')) ?>" class="col business-frontend">
+                            <?= $escaper->escapeHtml($block->getBusinessFrontendValue($directory->getBusinessFrontend())) ?>
+                        </td>
+                        <td data-th="<?= $escaper->escapeHtml(__('Notes')) ?>" class="col notes">
+                            <?= $escaper->escapeHtml($directory->getNotes()) ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

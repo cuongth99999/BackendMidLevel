@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Business Directory</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\BusinessDirectory\Block\Directory\Listing"
+                   name="business.directory.listing"
+                   template="Magenest_BusinessDirectory::directory/listing.phtml"
+                   cacheable="false">
+                <arguments>
+                    <argument name="cache_tags" xsi:type="array">
+                        <item name="business_directory" xsi:type="const">Magenest\BusinessDirectory\Model\Directory::CACHE_TAG</item>
+                        <item name="config" xsi:type="string">config</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
