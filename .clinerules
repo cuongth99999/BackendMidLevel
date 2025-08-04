@@ -1,0 +1,40 @@
+# Actility Magento 2 Project Rules
+
+## Coding Standards
+1. Follow PSR-2 and Magento 2 coding standards
+2. Use strict_types declaration in PHP files
+3. Use type hints for parameters and return types
+4. Follow SOLID principles
+5. Document classes and methods using PHPDoc
+
+## File Organization
+1. Follow Magento 2 module structure:
+   - Block/
+   - Controller/
+   - etc/
+   - Model/
+   - view/
+2. Keep files focused and single-responsibility
+
+## Development Workflow
+1. Document changes in Memory Bank
+2. Update relevant documentation files
+3. Follow Git commit message conventions
+4. Write/update unit tests for new features
+5. Maintain backward compatibility
+
+## Quality Standards
+1. Write testable code
+2. Follow Magento security best practices
+3. Optimize for performance
+4. Consider modularity and reusability
+5. Use dependency injection
+
+## Memory Bank Management
+1. Keep documentation up-to-date
+2. Document architectural decisions
+3. Maintain clear context in activeContext.md
+4. Track progress in progress.md
+5. Document technical constraints in techContext.md
+
+Note: These rules should be followed for all development work in this project.
