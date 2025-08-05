@@ -378,6 +378,7 @@ return [
         'Magento_WishlistGraphQl' => 1,
         'Magento_WishlistSampleData' => 1,
         'Magenest_BusinessDirectory' => 1,
+        'Magenest_CustomRouter' => 1,
         'Magenest_OrderClear' => 1,
         'Magenest_RequestLogger' => 1,
         'Magenest_XmlConfiguration' => 1,
