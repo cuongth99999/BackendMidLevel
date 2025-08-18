@@ -1,0 +1,5 @@
+<?php
+/** @var \Magenest\FullPageCache\Block\Gender $block */
+if ($t = $block->getText()): ?>
+    <div class="gender-banner">HttpContext + X-Magento-Vary - <?= $block->escapeHtml($t) ?></div>
+<?php endif; ?>

@@ -1,0 +1,11 @@
+<?php
+$session = \Magento\Framework\App\ObjectManager::getInstance()
+    ->get(\Magento\Customer\Model\Session::class);
+
+$text = '';
+if ($session->isLoggedIn()) {
+    $g = (int)$session->getCustomerDataObject()->getGender(); // 1=male, 2=female
+    $text = 'Bad Session FullPageCache - You are ' . ($g === 1 ? 'male' : ($g === 2 ? 'female' : 'unspecified'));
+}
+?>
+<div class="gender-banner-bad"><?= $block->escapeHtml($text) ?></div>

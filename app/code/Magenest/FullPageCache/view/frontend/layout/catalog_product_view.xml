@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="catalog_product_view"/>
+    <body>
+        <referenceBlock name="product.info.form.options">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="magenest.fullpagecache.configchildstock.qty"
+                   template="Magenest_FullPageCache::qty.phtml"
+                   after="product.info.addtocart.additional"/>
+        </referenceBlock>
+    </body>
+</page>

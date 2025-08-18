@@ -379,6 +379,7 @@ return [
         'Magento_WishlistSampleData' => 1,
         'Magenest_BusinessDirectory' => 1,
         'Magenest_CustomRouter' => 1,
+        'Magenest_FullPageCache' => 1,
         'Magenest_LayoutHandling' => 1,
         'Magenest_OrderClear' => 1,
         'Magenest_RequestLogger' => 1,

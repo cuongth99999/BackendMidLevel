@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.top">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="magenest.fullpagecache.showgender.bad"
+                   template="Magenest_FullPageCache::gender_bad.phtml" />
+            <block class="Magento\Framework\View\Element\Template"
+                   name="magenest.fullpagecache.showgender.banner"
+                   template="Magenest_FullPageCache::gender.phtml" />
+            <block class="Magenest\FullPageCache\Block\Gender"
+                   name="magenest.fullpagecache.showgender.banner.ctx"
+                   template="Magenest_FullPageCache::gender_httpcontext.phtml" />
+        </referenceContainer>
+    </body>
+</page>
