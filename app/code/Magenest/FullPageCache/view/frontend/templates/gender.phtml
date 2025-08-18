@@ -1,0 +1,14 @@
+<div id="gender-banner"></div>
+<script>
+    require(['Magento_Customer/js/customer-data'], function (customerData) {
+        function render() {
+            var data = customerData.get('gender')();
+            var el = document.getElementById('gender-banner');
+            if (!el) return;
+            el.textContent = (data && data.gender && data.gender !== 'guest')
+                ? ('JS Customer Section Data - You are ' + data.gender) : '';
+        }
+        customerData.get('gender').subscribe(render);
+        render();
+    });
+</script>
