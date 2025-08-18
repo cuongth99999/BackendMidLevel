@@ -7,4 +7,9 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="add_more_data_for_swatch_config"
+                type="Magenest\FullPageCache\Plugin\Product\Configurable\AddMoreDataForSwatchConfig"
+                sortOrder="10"/>
+    </type>
 </config>
