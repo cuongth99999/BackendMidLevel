@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+ * app/code/Magenest/CustomerTraining/etc/webapi.xml
+ *
+ * REST routes for the customer_training table.
+ * StoreCode is taken from the URL prefix: /rest/{store_code}/V1/...
+ * so messages built with __() are translated to that store's locale.
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+
+    <route url="/V1/magenest-customer-training/search" method="GET">
+        <service class="Magenest\CustomerTraining\Api\CustomerTrainingRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/magenest-customer-training/:entityId" method="GET">
+        <service class="Magenest\CustomerTraining\Api\CustomerTrainingRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/magenest-customer-training" method="POST">
+        <service class="Magenest\CustomerTraining\Api\CustomerTrainingRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/magenest-customer-training/:id" method="PUT">
+        <service class="Magenest\CustomerTraining\Api\CustomerTrainingRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/magenest-customer-training/:entityId" method="DELETE">
+        <service class="Magenest\CustomerTraining\Api\CustomerTrainingRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

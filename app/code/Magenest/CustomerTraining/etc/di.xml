@@ -11,7 +11,7 @@
     <preference for="Magenest\CustomerTraining\Api\Data\CustomerTrainingInterface"
                 type="Magenest\CustomerTraining\Model\CustomerTraining"/>
     <preference for="Magenest\CustomerTraining\Api\Data\CustomerTrainingSearchResultsInterface"
-                type="Magento\Framework\Api\SearchResults"/>
+                type="Magenest\CustomerTraining\Model\CustomerTrainingSearchResults"/>
 
     <!-- Bind the ResourceModel to the separate `well_trained` connection -->
     <type name="Magenest\CustomerTraining\Model\ResourceModel\CustomerTraining">
