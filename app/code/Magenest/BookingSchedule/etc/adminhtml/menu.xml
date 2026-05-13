@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_BookingSchedule::schedule"
+             title="Booking Schedule"
+             module="Magenest_BookingSchedule"
+             sortOrder="50"
+             resource="Magenest_BookingSchedule::schedule"
+             parent="Magento_Backend::content"
+             action="magenest_bookingschedule/schedule/index"/>
+    </menu>
+</config>

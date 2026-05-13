@@ -1,0 +1,95 @@
+<div class="mbs-toolbar">
+    <div class="mbs-toolbar__left">
+        <span class="mbs-toolbar__label" data-bind="text: weekRangeLabel"></span>
+    </div>
+    <div class="mbs-toolbar__right">
+        <input type="number"
+               class="mbs-copy-count input-text"
+               min="1"
+               max="52"
+               data-bind="value: copyCount, valueUpdate: 'input'"/>
+        <button type="button"
+                class="action-secondary mbs-btn-copy"
+                data-bind="click: copyWeek, disable: isCopying">
+            <span data-bind="text: copyLabel"></span>
+        </button>
+    </div>
+</div>
+
+<div class="mbs-grid-wrapper">
+    <table class="mbs-grid">
+        <thead>
+            <tr>
+                <th class="mbs-corner mbs-corner--prev">
+                    <button type="button"
+                            class="mbs-arrow mbs-arrow--left"
+                            title="Previous week"
+                            data-bind="click: previousWeek">&#9664;</button>
+                </th>
+                <!-- ko foreach: weekDays -->
+                <th class="mbs-day-head">
+                    <div class="mbs-day-name" data-bind="text: dayName"></div>
+                    <div class="mbs-day-date" data-bind="text: dayLabel"></div>
+                </th>
+                <!-- /ko -->
+                <th class="mbs-corner mbs-corner--next">
+                    <button type="button"
+                            class="mbs-arrow mbs-arrow--right"
+                            title="Next week"
+                            data-bind="click: nextWeek">&#9654;</button>
+                </th>
+            </tr>
+            <tr class="mbs-scroll-row">
+                <th colspan="9" class="mbs-scroll-cell">
+                    <button type="button"
+                            class="mbs-arrow mbs-arrow--up"
+                            title="Earlier slots"
+                            data-bind="click: scrollUp, disable: !canScrollUp()">&#9650;</button>
+                </th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: visibleSlots">
+            <tr>
+                <td class="mbs-time" data-bind="text: $data"></td>
+                <!-- ko foreach: $parent.weekDays() -->
+                <td class="mbs-cell"
+                    data-bind="css: { 'mbs-cell--active': $parents[1].isCellActive(isoDate, $parent) }">
+                    <div class="mbs-cell__line"
+                         data-bind="text: $parents[1].labelReservation(isoDate, $parent)"></div>
+                    <div class="mbs-cell__line"
+                         data-bind="text: $parents[1].labelUsed(isoDate, $parent)"></div>
+                    <div class="mbs-cell__stock">
+                        <span translate="'Stock'"></span>
+                        <input type="number"
+                               min="0"
+                               max="999"
+                               class="mbs-stock-input"
+                               data-bind="
+                                  value: $parents[1].cellStock(isoDate, $parent),
+                                  event: { input: $parents[1].onStockInput(isoDate, $parent) }"/>
+                    </div>
+                </td>
+                <!-- /ko -->
+                <td class="mbs-spacer"></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr class="mbs-scroll-row">
+                <th colspan="9" class="mbs-scroll-cell">
+                    <button type="button"
+                            class="mbs-arrow mbs-arrow--down"
+                            title="Later slots"
+                            data-bind="click: scrollDown, disable: !canScrollDown()">&#9660;</button>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div class="mbs-actions">
+    <button type="button"
+            class="action-primary mbs-btn-save"
+            data-bind="click: save, disable: isSaving">
+        <span data-bind="text: saveLabel"></span>
+    </button>
+</div>

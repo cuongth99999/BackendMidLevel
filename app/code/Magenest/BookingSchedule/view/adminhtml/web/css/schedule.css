@@ -1,0 +1,142 @@
+/* app/code/Magenest/BookingSchedule/view/adminhtml/web/css/schedule.css */
+
+.magenest-booking-schedule { font-size: 13px; }
+
+.magenest-booking-schedule .mbs-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 8px;
+}
+.magenest-booking-schedule .mbs-toolbar__label {
+    font-weight: 600;
+    font-size: 15px;
+}
+.magenest-booking-schedule .mbs-toolbar__right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.magenest-booking-schedule .mbs-copy-count {
+    width: 70px;
+    height: 32px;
+}
+.magenest-booking-schedule .mbs-btn-copy {
+    background: #4f4f4f;
+    color: #fff;
+    border: 0;
+    padding: 8px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.magenest-booking-schedule .mbs-btn-copy:hover { background: #353535; }
+
+.magenest-booking-schedule .mbs-grid-wrapper {
+    overflow-x: auto;
+    border: 1px solid #d6d6d6;
+    background: #fff;
+}
+.magenest-booking-schedule .mbs-grid {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+.magenest-booking-schedule .mbs-grid th,
+.magenest-booking-schedule .mbs-grid td {
+    border: 1px solid #e2e2e2;
+    text-align: center;
+    vertical-align: middle;
+    padding: 6px 4px;
+}
+
+.magenest-booking-schedule .mbs-corner {
+    width: 48px;
+    background: #f4f4f4;
+}
+.magenest-booking-schedule .mbs-arrow {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 18px;
+    color: #555;
+    line-height: 1;
+    padding: 4px 8px;
+}
+.magenest-booking-schedule .mbs-arrow:hover { color: #000; }
+.magenest-booking-schedule .mbs-arrow[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.magenest-booking-schedule .mbs-day-head {
+    background: #5a5a5a;
+    color: #fff;
+    padding: 10px 6px;
+}
+.magenest-booking-schedule .mbs-day-name { font-weight: 700; font-size: 13px; }
+.magenest-booking-schedule .mbs-day-date { font-size: 12px; opacity: 0.85; }
+
+.magenest-booking-schedule .mbs-scroll-row .mbs-scroll-cell {
+    background: #f4f4f4;
+    text-align: center;
+    padding: 4px;
+}
+
+.magenest-booking-schedule .mbs-time {
+    width: 60px;
+    background: #fafafa;
+    font-weight: 600;
+    color: #444;
+}
+
+.magenest-booking-schedule .mbs-cell {
+    background: #fff;
+    min-width: 110px;
+    height: 78px;
+}
+.magenest-booking-schedule .mbs-cell--active { background: #d8efc6; }
+.magenest-booking-schedule .mbs-cell__line {
+    border-bottom: 1px dashed #c4c4c4;
+    padding: 2px 0;
+    font-size: 12px;
+    color: #333;
+}
+.magenest-booking-schedule .mbs-cell__stock {
+    padding-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12px;
+}
+.magenest-booking-schedule .mbs-stock-input {
+    width: 48px;
+    height: 26px;
+    padding: 2px 4px;
+    border: 1px solid #8c8c8c;
+    background: #fff;
+    font-size: 13px;
+    text-align: center;
+}
+.magenest-booking-schedule .mbs-spacer {
+    width: 48px;
+    background: #fafafa;
+    border-left: 0;
+    border-right: 0;
+}
+
+.magenest-booking-schedule .mbs-actions {
+    margin-top: 14px;
+    text-align: right;
+}
+.magenest-booking-schedule .mbs-btn-save {
+    background: #eb5202;
+    color: #fff;
+    border: 0;
+    padding: 10px 22px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.magenest-booking-schedule .mbs-btn-save:hover { background: #c84301; }

@@ -1,0 +1,30 @@
+<?php
+/**
+ * app/code/Magenest/BookingSchedule/view/adminhtml/templates/schedule.phtml
+ *
+ * @var \Magenest\BookingSchedule\Block\Adminhtml\Schedule $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div id="magenest-booking-schedule"
+     data-bind="scope: 'bookingSchedule'"
+     class="magenest-booking-schedule">
+
+    <!-- ko template: getTemplate() --><!-- /ko -->
+
+    <script type="text/x-magento-init">
+        {
+            "#magenest-booking-schedule": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "bookingSchedule": {
+                            "component": "Magenest_BookingSchedule/js/view/schedule",
+                            "template": "Magenest_BookingSchedule/schedule",
+                            "config": <?= /* @noEscape */ $block->getJsonConfig() ?>
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</div>

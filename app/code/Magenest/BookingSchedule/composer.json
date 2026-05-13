@@ -1,0 +1,19 @@
+{
+    "name": "magenest/module-booking-schedule",
+    "description": "Booking Schedule grid for admin (KnockoutJS).",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0",
+        "magento/framework": "*",
+        "magento/module-backend": "*",
+        "magento/module-ui": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {
+            "Magenest\\BookingSchedule\\": ""
+        }
+    },
+    "version": "1.0.0"
+}

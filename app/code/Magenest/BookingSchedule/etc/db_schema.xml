@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+ * app/code/Magenest/BookingSchedule/etc/db_schema.xml
+ *
+ * After every change run (BEFORE setup:upgrade):
+ *   bin/magento setup:db-declaration:generate-whitelist (module-name=Magenest_BookingSchedule)
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="magenest_booking_schedule" resource="default" engine="innodb"
+           comment="Booking Schedule Slots">
+
+        <column xsi:type="int"       name="entity_id"      unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="date"      name="schedule_date"                  nullable="false"                 comment="Slot Date (YYYY-MM-DD)"/>
+        <column xsi:type="varchar"   name="schedule_time"  length="5"      nullable="false"                 comment="Slot Time (HH:MM)"/>
+        <column xsi:type="smallint"  name="stock"          unsigned="true" nullable="false" default="0"     comment="Max bookings for this slot"/>
+        <column xsi:type="smallint"  name="used"           unsigned="true" nullable="false" default="0"     comment="Bookings already consumed"/>
+        <column xsi:type="smallint"  name="reservation"    unsigned="true" nullable="false" default="0"     comment="Bookings currently reserved"/>
+        <column xsi:type="timestamp" name="created_at"     on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at"     on_update="true"  nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <!-- One slot per (date, time) -->
+        <constraint xsi:type="unique" referenceId="MAGENEST_BOOKING_SCHEDULE_DATE_TIME">
+            <column name="schedule_date"/>
+            <column name="schedule_time"/>
+        </constraint>
+
+        <!-- Range scans for week queries -->
+        <index referenceId="MAGENEST_BOOKING_SCHEDULE_DATE" indexType="btree">
+            <column name="schedule_date"/>
+        </index>
+
+        <!-- "Slots still available" lookups -->
+        <index referenceId="MAGENEST_BOOKING_SCHEDULE_STOCK" indexType="btree">
+            <column name="stock"/>
+        </index>
+    </table>
+</schema>
