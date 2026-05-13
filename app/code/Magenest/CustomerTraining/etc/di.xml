@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+ * app/code/Magenest/CustomerTraining/etc/di.xml
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Service Contract preferences -->
+    <preference for="Magenest\CustomerTraining\Api\CustomerTrainingRepositoryInterface"
+                type="Magenest\CustomerTraining\Model\CustomerTrainingRepository"/>
+    <preference for="Magenest\CustomerTraining\Api\Data\CustomerTrainingInterface"
+                type="Magenest\CustomerTraining\Model\CustomerTraining"/>
+    <preference for="Magenest\CustomerTraining\Api\Data\CustomerTrainingSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+
+    <!-- Bind the ResourceModel to the separate `well_trained` connection -->
+    <type name="Magenest\CustomerTraining\Model\ResourceModel\CustomerTraining">
+        <arguments>
+            <argument name="connectionName" xsi:type="string">well_trained</argument>
+        </arguments>
+    </type>
+
+    <!-- Collection processor for the repository -->
+    <virtualType name="Magenest\CustomerTraining\Model\Api\SearchCriteria\CollectionProcessor"
+                 type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="filters" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\FilterProcessor</item>
+                <item name="sorting" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\SortingProcessor</item>
+                <item name="pagination" xsi:type="object">Magento\Framework\Api\SearchCriteria\CollectionProcessor\PaginationProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magenest\CustomerTraining\Model\CustomerTrainingRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Magenest\CustomerTraining\Model\Api\SearchCriteria\CollectionProcessor</argument>
+        </arguments>
+    </type>
+
+    <!-- UI listing grid data source (must implement SearchResultInterface).
+         connectionName="well_trained" routes reads at this table through the
+         separate database. -->
+    <virtualType name="Magenest\CustomerTraining\Model\ResourceModel\CustomerTraining\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">customer_training</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\CustomerTraining\Model\ResourceModel\CustomerTraining</argument>
+            <argument name="identifierName" xsi:type="string">entity_id</argument>
+            <argument name="connectionName" xsi:type="string">well_trained</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="customertraining_customer_listing_data_source" xsi:type="string">Magenest\CustomerTraining\Model\ResourceModel\CustomerTraining\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
