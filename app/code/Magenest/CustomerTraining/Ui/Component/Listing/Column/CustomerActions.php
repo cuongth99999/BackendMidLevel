@@ -38,6 +38,9 @@ class CustomerActions extends Column
                     ),
                     'label' => __('Edit'),
                 ];
+                $fullName = trim(
+                    (string) ($item['first_name'] ?? '') . ' ' . (string) ($item['last_name'] ?? '')
+                );
                 $item[$name]['delete'] = [
                     'href' => $this->urlBuilder->getUrl(
                         'customertraining/customer/delete',
@@ -45,7 +48,9 @@ class CustomerActions extends Column
                     ),
                     'label'   => __('Delete'),
                     'confirm' => [
-                        'title'   => __('Delete "${ $.$data.first_name } ${ $.$data.last_name }"'),
+                        'title'   => $fullName !== ''
+                            ? __('Delete "%1"', $fullName)
+                            : __('Delete customer'),
                         'message' => __('Are you sure you want to delete this customer?'),
                     ],
                 ];
