@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * app/code/Magenest/AjaxCart/view/frontend/layout/checkout_cart_index.xml
+ *
+ * Overrides:
+ *  1. Cart form template  → replaces Magento's POST-submit JS with our AJAX widget
+ *  2. Remove-item buttons → replaces data-post with data-ajax-delete (no page reload)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Override cart form: swap out the update-shopping-cart JS init -->
+        <referenceBlock name="checkout.cart.form"
+                        template="Magenest_AjaxCart::cart/form.phtml"/>
+
+        <!-- Override remove button for "default" (configurable/bundled) renderer -->
+        <referenceBlock name="checkout.cart.item.renderers.default.actions.remove"
+                        template="Magenest_AjaxCart::cart/item/renderer/actions/remove.phtml"/>
+
+        <!-- Override remove button for "simple" product renderer -->
+        <referenceBlock name="checkout.cart.item.renderers.simple.actions.remove"
+                        template="Magenest_AjaxCart::cart/item/renderer/actions/remove.phtml"/>
+    </body>
+</page>
