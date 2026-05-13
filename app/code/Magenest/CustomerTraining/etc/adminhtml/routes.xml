@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+ * app/code/Magenest/CustomerTraining/etc/adminhtml/routes.xml
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="customertraining" frontName="customertraining">
+            <module name="Magenest_CustomerTraining"/>
+        </route>
+    </router>
+</config>
