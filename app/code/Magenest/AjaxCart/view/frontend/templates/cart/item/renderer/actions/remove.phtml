@@ -1,0 +1,24 @@
+<?php
+/**
+ * app/code/Magenest/AjaxCart/view/frontend/templates/cart/item/renderer/actions/remove.phtml
+ *
+ * Overrides Magento_Checkout::cart/item/renderer/actions/remove.phtml.
+ *
+ * Replaces the data-post attribute (which submits a hidden form and triggers a full
+ * page reload) with data-ajax-delete so that ajax-cart.js can intercept the click
+ * and perform a no-reload AJAX delete instead.
+ *
+ * @var \Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove $block
+ */
+
+// SEC: Parse server-side data-post JSON to extract the item ID.
+//      json_decode is safe here; the value originates from a trusted Magento helper.
+$deletePostData = json_decode($block->getDeletePostJson(), true);
+$itemId         = (int)($deletePostData['data']['id'] ?? 0);
+?>
+<a href="#"
+   title="<?= $block->escapeHtml(__('Remove item')) ?>"
+   class="action action-delete"
+   data-ajax-delete="<?= /* @noEscape */ $itemId ?>">
+    <span><?= $block->escapeHtml(__('Remove item')) ?></span>
+</a>

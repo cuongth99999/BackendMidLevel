@@ -1,0 +1,30 @@
+// app/code/Magenest/AjaxCart/view/frontend/web/css/source/_module.less
+//
+// Magenest AjaxCart — supplemental styles
+// All heavy loading feedback is delegated to Magento's built-in processStart/processStop
+// loader.  This file adds lightweight visual cues for the cart form itself.
+
+& when (@media-common = true) {
+
+    //
+    // Cart form loading state
+    // Applied by ajax-cart.js while an AJAX request is in-flight.
+    // ────────────────────────────────────────────────────────────────────────────
+    .form-cart {
+        position: relative;
+        transition: opacity 0.2s ease;
+
+        // Dim the form so the user knows it's being processed
+        &.magenest-ajaxcart--loading {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    }
+
+    //
+    // Remove-item action link
+    // ────────────────────────────────────────────────────────────────────────────
+    .action.action-delete[data-ajax-delete] {
+        cursor: pointer;
+    }
+}

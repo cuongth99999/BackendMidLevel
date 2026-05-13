@@ -1,0 +1,20 @@
+{
+    "name": "magenest/module-ajaxcart",
+    "description": "AJAX Cart functionality for Magento 2",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require": {
+        "php": "~7.4.0||~8.1.0",
+        "magento/framework": "103.0.*",
+        "magento/module-checkout": "100.4.*",
+        "magento/module-catalog-inventory": "100.4.*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magenest\\AjaxCart\\": ""
+        }
+    }
+}

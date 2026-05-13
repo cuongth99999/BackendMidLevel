@@ -1,0 +1,105 @@
+<?php
+/**
+ * app/code/Magenest/AjaxCart/view/frontend/templates/cart/form.phtml
+ *
+ * Overrides Magento_Checkout::cart/form.phtml.
+ *
+ * Key differences from core:
+ *  - Replaces Magento_Checkout/js/action/update-shopping-cart (full-page POST) with
+ *    Magenest_AjaxCart/js/ajax-cart (AJAX, no reload).
+ *  - Removes the shoppingCart jQuery widget init (enter-key + clear-cart confirm are
+ *    handled inside ajax-cart.js instead).
+ *  - Removes data-cart-item-update / #update_cart_action_container hidden field
+ *    (no longer needed by the new widget).
+ *
+ * @var \Magento\Checkout\Block\Cart\Grid $block
+ */
+// phpcs:disable Magento2.Templates.ThisInTemplate
+?>
+<?php $mergedCells = ($this->helper(Magento\Tax\Helper\Data::class)->displayCartBothPrices() ? 2 : 1); ?>
+<?= $block->getChildHtml('form_before') ?>
+<form action="<?= $block->escapeUrl($block->getUrl('checkout/cart/updatePost')) ?>"
+      method="post"
+      id="form-validate"
+      class="form form-cart"
+      data-mage-init='{"Magenest_AjaxCart/js/ajax-cart": {
+          "updateUrl": "<?= $block->escapeUrl($block->getUrl('ajaxcart/cart/ajaxUpdate')) ?>",
+          "deleteUrl": "<?= $block->escapeUrl($block->getUrl('ajaxcart/cart/ajaxDelete')) ?>"
+      }}'>
+
+    <?= $block->getBlockHtml('formkey') ?>
+
+    <div class="cart table-wrapper<?= $mergedCells === 2 ? ' detailed' : '' ?>">
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="cart-products-toolbar cart-products-toolbar-top toolbar"
+                 data-attribute="cart-products-toolbar-top">
+                <?= $block->getPagerHtml() ?>
+            </div>
+        <?php endif ?>
+
+        <table id="shopping-cart-table" class="cart items data table">
+            <caption class="table-caption">
+                <?= $block->escapeHtml(__('Shopping Cart Items')) ?>
+            </caption>
+            <thead>
+                <tr>
+                    <th class="col item" scope="col">
+                        <span><?= $block->escapeHtml(__('Item')) ?></span>
+                    </th>
+                    <th class="col price" scope="col">
+                        <span><?= $block->escapeHtml(__('Price')) ?></span>
+                    </th>
+                    <th class="col qty" scope="col">
+                        <span><?= $block->escapeHtml(__('Qty')) ?></span>
+                    </th>
+                    <th class="col subtotal" scope="col">
+                        <span><?= $block->escapeHtml(__('Subtotal')) ?></span>
+                    </th>
+                </tr>
+            </thead>
+            <?php foreach ($block->getItems() as $_item): ?>
+                <?= $block->getItemHtml($_item) ?>
+            <?php endforeach ?>
+        </table>
+
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="cart-products-toolbar cart-products-toolbar-bottom toolbar"
+                 data-attribute="cart-products-toolbar-bottom">
+                <?= $block->getPagerHtml() ?>
+            </div>
+        <?php endif ?>
+    </div>
+
+    <div class="cart main actions">
+        <?php if ($block->getContinueShoppingUrl()): ?>
+            <a class="action continue"
+               href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>"
+               title="<?= $block->escapeHtml(__('Continue Shopping')) ?>">
+                <span><?= $block->escapeHtml(__('Continue Shopping')) ?></span>
+            </a>
+        <?php endif ?>
+
+        <?php if ($block->getViewModel()->isClearShoppingCartEnabled()): ?>
+            <button type="submit"
+                    name="update_cart_action"
+                    value="empty_cart"
+                    title="<?= $block->escapeHtml(__('Clear Shopping Cart')) ?>"
+                    class="action clear"
+                    id="empty_cart_button"
+                    data-role="clear-cart">
+                <span><?= $block->escapeHtml(__('Clear Shopping Cart')) ?></span>
+            </button>
+        <?php endif ?>
+
+        <button type="submit"
+                name="update_cart_action"
+                value="update_qty"
+                title="<?= $block->escapeHtml(__('Update Shopping Cart')) ?>"
+                class="action update"
+                data-role="update-cart">
+            <span><?= $block->escapeHtml(__('Update Shopping Cart')) ?></span>
+        </button>
+    </div>
+</form>
+<?= $block->getChildHtml('checkout.cart.order.actions') ?>
+<?= $block->getChildHtml('shopping.cart.table.after') ?>
