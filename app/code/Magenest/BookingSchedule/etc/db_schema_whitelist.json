@@ -1,0 +1,22 @@
+{
+    "magenest_booking_schedule": {
+        "column": {
+            "entity_id": true,
+            "schedule_date": true,
+            "schedule_time": true,
+            "stock": true,
+            "used": true,
+            "reservation": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MAGENEST_BOOKING_SCHEDULE_DATE": true,
+            "MAGENEST_BOOKING_SCHEDULE_STOCK": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_BOOKING_SCHEDULE_DATE_TIME": true
+        }
+    }
+}
