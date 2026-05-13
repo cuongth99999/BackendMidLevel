@@ -1,0 +1,73 @@
+# app/code/Magenest/CustomerTraining/etc/schema.graphqls
+#
+# GraphQL schema for the customer_training table.
+# StoreCode is taken from the `Store` HTTP header; __() translations follow.
+
+type Query {
+    customerTraining(
+        entity_id: Int! @doc(description: "Entity ID of the customer training record.")
+    ): CustomerTraining
+    @resolver(class: "Magenest\\CustomerTraining\\Model\\Resolver\\Query\\Get")
+    @doc(description: "Fetch a single customer training record by its entity ID.")
+
+    customerTrainings(
+        filter: CustomerTrainingFilterInput @doc(description: "Filter conditions for the search.")
+        pageSize: Int = 20 @doc(description: "Records per page (default 20).")
+        currentPage: Int = 1 @doc(description: "1-based page number (default 1).")
+    ): CustomerTrainingResults
+    @resolver(class: "Magenest\\CustomerTraining\\Model\\Resolver\\Query\\GetList")
+    @doc(description: "Search customer training records.")
+}
+
+type Mutation {
+    saveCustomerTraining(
+        input: CustomerTrainingInput! @doc(description: "Customer training payload; omit entity_id to create.")
+    ): CustomerTraining
+    @resolver(class: "Magenest\\CustomerTraining\\Model\\Resolver\\Mutation\\Save")
+    @doc(description: "Create or update a customer training record.")
+
+    deleteCustomerTraining(
+        entity_id: Int! @doc(description: "Entity ID of the record to delete.")
+    ): DeleteCustomerTrainingOutput
+    @resolver(class: "Magenest\\CustomerTraining\\Model\\Resolver\\Mutation\\Delete")
+    @doc(description: "Delete a customer training record by its entity ID.")
+}
+
+type CustomerTraining @doc(description: "A customer training record stored in the well_trained database.") {
+    entity_id: Int  @doc(description: "Auto-generated entity ID.")
+    first_name: String @doc(description: "First name.")
+    last_name: String  @doc(description: "Last name.")
+    address: String    @doc(description: "Street address.")
+    city: String       @doc(description: "City.")
+    age: Int           @doc(description: "Age.")
+    created_at: String @doc(description: "Creation timestamp.")
+    updated_at: String @doc(description: "Last update timestamp.")
+}
+
+input CustomerTrainingInput @doc(description: "Payload for creating or updating a customer training record.") {
+    entity_id: Int  @doc(description: "Entity ID. Provide to update; omit to create.")
+    first_name: String! @doc(description: "First name (required).")
+    last_name: String!  @doc(description: "Last name (required).")
+    address: String     @doc(description: "Street address.")
+    city: String        @doc(description: "City.")
+    age: Int            @doc(description: "Age (0–200).")
+}
+
+input CustomerTrainingFilterInput @doc(description: "Filter conditions for searching customer training records.") {
+    entity_id: FilterTypeInput
+    first_name: FilterTypeInput
+    last_name: FilterTypeInput
+    city: FilterTypeInput
+    age: FilterTypeInput
+}
+
+type CustomerTrainingResults @doc(description: "Paginated customer training search result.") {
+    total_count: Int @doc(description: "Total matching records (ignoring pagination).")
+    items: [CustomerTraining] @doc(description: "Page of matching customer training records.")
+    page_info: SearchResultPageInfo @doc(description: "Pagination metadata.")
+}
+
+type DeleteCustomerTrainingOutput @doc(description: "Result of a delete mutation.") {
+    success: Boolean @doc(description: "True if the record was deleted.")
+    message: String  @doc(description: "Localized status message.")
+}

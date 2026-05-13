@@ -16,25 +16,47 @@ use Magento\Framework\Exception\NoSuchEntityException;
 interface CustomerTrainingRepositoryInterface
 {
     /**
-     * @throws CouldNotSaveException
+     * Save a customer training record (create when entity_id is empty, update otherwise).
+     *
+     * @param \Magenest\CustomerTraining\Api\Data\CustomerTrainingInterface $entity
+     * @return \Magenest\CustomerTraining\Api\Data\CustomerTrainingInterface
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
      */
     public function save(CustomerTrainingInterface $entity): CustomerTrainingInterface;
 
     /**
-     * @throws NoSuchEntityException
+     * Load a customer training record by entity ID.
+     *
+     * @param int $entityId
+     * @return \Magenest\CustomerTraining\Api\Data\CustomerTrainingInterface
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getById(int $entityId): CustomerTrainingInterface;
 
+    /**
+     * Search customer training records by criteria.
+     *
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
+     * @return \Magenest\CustomerTraining\Api\Data\CustomerTrainingSearchResultsInterface
+     */
     public function getList(SearchCriteriaInterface $searchCriteria): CustomerTrainingSearchResultsInterface;
 
     /**
-     * @throws CouldNotDeleteException
+     * Delete a customer training record.
+     *
+     * @param \Magenest\CustomerTraining\Api\Data\CustomerTrainingInterface $entity
+     * @return bool
+     * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
     public function delete(CustomerTrainingInterface $entity): bool;
 
     /**
-     * @throws NoSuchEntityException
-     * @throws CouldNotDeleteException
+     * Delete a customer training record by entity ID.
+     *
+     * @param int $entityId
+     * @return bool
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
     public function deleteById(int $entityId): bool;
 }
