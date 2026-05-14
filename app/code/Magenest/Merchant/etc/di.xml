@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+ * app/code/Magenest/Merchant/etc/di.xml
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Service contracts -->
+    <preference for="Magenest\Merchant\Api\Data\MerchantInterface"
+                type="Magenest\Merchant\Model\Merchant"/>
+    <preference for="Magenest\Merchant\Api\MerchantRepositoryInterface"
+                type="Magenest\Merchant\Model\MerchantRepository"/>
+    <preference for="Magenest\Merchant\Api\Data\MerchantSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+
+    <!-- UI Listing: register grid collection under the data-source name -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magenest_merchant_merchant_listing_data_source" xsi:type="string">
+                    Magenest\Merchant\Model\ResourceModel\Merchant\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Grid collection virtualType wiring (collection -> EAV entity) -->
+    <type name="Magenest\Merchant\Model\ResourceModel\Merchant\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_merchant_entity</argument>
+            <argument name="eventPrefix" xsi:type="string">magenest_merchant_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">merchant_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\Merchant\Model\ResourceModel\Merchant</argument>
+        </arguments>
+    </type>
+</config>
