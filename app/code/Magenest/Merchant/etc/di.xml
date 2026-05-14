@@ -33,4 +33,12 @@
             <argument name="resourceModel" xsi:type="string">Magenest\Merchant\Model\ResourceModel\Merchant</argument>
         </arguments>
     </type>
+
+    <!-- Invalidate the Elasticsearch fulltext index when a merchant's
+         store_name changes — products with that merchant_id have stale text. -->
+    <type name="Magenest\Merchant\Api\MerchantRepositoryInterface">
+        <plugin name="magenest_merchant_invalidate_catalogsearch_on_save"
+                type="Magenest\Merchant\Plugin\InvalidateCatalogSearchOnMerchantSave"
+                sortOrder="10"/>
+    </type>
 </config>
