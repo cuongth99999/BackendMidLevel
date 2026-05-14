@@ -1,0 +1,120 @@
+{
+    "magenest_merchant_entity": {
+        "column": {
+            "entity_id": true,
+            "entity_type_id": true,
+            "attribute_set_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        },
+        "index": {
+            "MAGENEST_MERCHANT_ENTITY_ENTITY_TYPE_ID": true,
+            "MAGENEST_MERCHANT_ENTITY_ATTRIBUTE_SET_ID": true,
+            "MAGENEST_MERCHANT_ENTITY_STORE_ID": true
+        }
+    },
+    "magenest_merchant_entity_varchar": {
+        "column": {
+            "value_id": true,
+            "attribute_id": true,
+            "store_id": true,
+            "entity_id": true,
+            "value": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_MERCH_VARCHAR_ATTR_ID_EAV_ATTR_ATTR_ID": true,
+            "MAGENEST_MERCH_VARCHAR_ENT_ID_MAGENEST_MERCH_ENT_ENT_ID": true,
+            "MAGENEST_MERCH_VARCHAR_STORE_ID_STORE_STORE_ID": true,
+            "MAGENEST_MERCH_VARCHAR_ENT_ID_ATTR_ID_STORE_ID": true
+        },
+        "index": {
+            "MAGENEST_MERCH_VARCHAR_ATTR_ID": true,
+            "MAGENEST_MERCH_VARCHAR_STORE_ID": true
+        }
+    },
+    "magenest_merchant_entity_int": {
+        "column": {
+            "value_id": true,
+            "attribute_id": true,
+            "store_id": true,
+            "entity_id": true,
+            "value": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_MERCH_INT_ATTR_ID_EAV_ATTR_ATTR_ID": true,
+            "MAGENEST_MERCH_INT_ENT_ID_MAGENEST_MERCH_ENT_ENT_ID": true,
+            "MAGENEST_MERCH_INT_STORE_ID_STORE_STORE_ID": true,
+            "MAGENEST_MERCH_INT_ENT_ID_ATTR_ID_STORE_ID": true
+        },
+        "index": {
+            "MAGENEST_MERCH_INT_ATTR_ID": true,
+            "MAGENEST_MERCH_INT_STORE_ID": true
+        }
+    },
+    "magenest_merchant_entity_text": {
+        "column": {
+            "value_id": true,
+            "attribute_id": true,
+            "store_id": true,
+            "entity_id": true,
+            "value": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_MERCH_TEXT_ATTR_ID_EAV_ATTR_ATTR_ID": true,
+            "MAGENEST_MERCH_TEXT_ENT_ID_MAGENEST_MERCH_ENT_ENT_ID": true,
+            "MAGENEST_MERCH_TEXT_STORE_ID_STORE_STORE_ID": true,
+            "MAGENEST_MERCH_TEXT_ENT_ID_ATTR_ID_STORE_ID": true
+        },
+        "index": {
+            "MAGENEST_MERCH_TEXT_ATTR_ID": true,
+            "MAGENEST_MERCH_TEXT_STORE_ID": true
+        }
+    },
+    "magenest_merchant_entity_datetime": {
+        "column": {
+            "value_id": true,
+            "attribute_id": true,
+            "store_id": true,
+            "entity_id": true,
+            "value": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_MERCH_DATETIME_ATTR_ID_EAV_ATTR_ATTR_ID": true,
+            "MAGENEST_MERCH_DATETIME_ENT_ID_MAGENEST_MERCH_ENT_ENT_ID": true,
+            "MAGENEST_MERCH_DATETIME_STORE_ID_STORE_STORE_ID": true,
+            "MAGENEST_MERCH_DATETIME_ENT_ID_ATTR_ID_STORE_ID": true
+        },
+        "index": {
+            "MAGENEST_MERCH_DATETIME_ATTR_ID": true,
+            "MAGENEST_MERCH_DATETIME_STORE_ID": true
+        }
+    },
+    "magenest_merchant_entity_decimal": {
+        "column": {
+            "value_id": true,
+            "attribute_id": true,
+            "store_id": true,
+            "entity_id": true,
+            "value": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_MERCH_DECIMAL_ATTR_ID_EAV_ATTR_ATTR_ID": true,
+            "MAGENEST_MERCH_DECIMAL_ENT_ID_MAGENEST_MERCH_ENT_ENT_ID": true,
+            "MAGENEST_MERCH_DECIMAL_STORE_ID_STORE_STORE_ID": true,
+            "MAGENEST_MERCH_DECIMAL_ENT_ID_ATTR_ID_STORE_ID": true
+        },
+        "index": {
+            "MAGENEST_MERCH_DECIMAL_ATTR_ID": true,
+            "MAGENEST_MERCH_DECIMAL_STORE_ID": true
+        }
+    }
+}

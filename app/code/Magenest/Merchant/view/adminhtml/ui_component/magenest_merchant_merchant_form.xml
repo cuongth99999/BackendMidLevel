@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * app/code/Magenest/Merchant/view/adminhtml/ui_component/magenest_merchant_merchant_form.xml
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">magenest_merchant_merchant_form.magenest_merchant_merchant_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Merchant</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="back" class="Magenest\Merchant\Block\Adminhtml\Form\BackButton"/>
+            <button name="delete" class="Magenest\Merchant\Block\Adminhtml\Form\DeleteButton"/>
+            <button name="save" class="Magenest\Merchant\Block\Adminhtml\Form\SaveButton"/>
+            <button name="save_and_continue" class="Magenest\Merchant\Block\Adminhtml\Form\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>magenest_merchant_merchant_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>magenest_merchant_merchant_form.magenest_merchant_merchant_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="magenest_merchant_merchant_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="magenest_merchant/merchant/save"/>
+        </settings>
+        <dataProvider class="Magenest\Merchant\Model\Merchant\DataProvider"
+                      name="magenest_merchant_merchant_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label translate="true">General Information</label>
+            <collapsible>false</collapsible>
+        </settings>
+
+        <field name="entity_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <visible>false</visible>
+                <dataType>text</dataType>
+                <dataScope>entity_id</dataScope>
+            </settings>
+        </field>
+
+        <field name="merchant_code" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Merchant ID</label>
+                <dataType>text</dataType>
+                <dataScope>merchant_code</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="store_name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Store Name</label>
+                <dataType>text</dataType>
+                <dataScope>store_name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="mc_phone" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">MC's Phone No.</label>
+                <dataType>text</dataType>
+                <dataScope>mc_phone</dataScope>
+            </settings>
+        </field>
+
+        <field name="dsa_phone" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">DSA's Phone No.</label>
+                <dataType>text</dataType>
+                <dataScope>dsa_phone</dataScope>
+            </settings>
+        </field>
+
+        <field name="category_ids" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Category</label>
+                <dataType>text</dataType>
+                <dataScope>category_ids</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magenest\Merchant\Model\Source\Category"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <field name="merchant_status" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Merchant Status</label>
+                <dataType>text</dataType>
+                <dataScope>merchant_status</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magenest\Merchant\Model\Source\Status"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="kyc_level" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">KYC Level</label>
+                <dataType>text</dataType>
+                <dataScope>kyc_level</dataScope>
+            </settings>
+        </field>
+
+        <field name="merchant_type" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Merchant Type</label>
+                <dataType>text</dataType>
+                <dataScope>merchant_type</dataScope>
+            </settings>
+        </field>
+
+        <field name="partner" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Partner</label>
+                <dataType>text</dataType>
+                <dataScope>partner</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+
+    <fieldset name="dates">
+        <settings>
+            <label translate="true">Timeline</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+
+        <field name="active_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Active Date</label>
+                <dataType>text</dataType>
+                <dataScope>active_date</dataScope>
+            </settings>
+        </field>
+
+        <field name="onboarding_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Onboarding Date</label>
+                <dataType>text</dataType>
+                <dataScope>onboarding_date</dataScope>
+            </settings>
+        </field>
+
+        <field name="latest_update_date" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Latest Update Date</label>
+                <dataType>text</dataType>
+                <dataScope>latest_update_date</dataScope>
+                <disabled>true</disabled>
+                <notice translate="true">Automatically updated every save.</notice>
+            </settings>
+        </field>
+    </fieldset>
+
+    <fieldset name="address">
+        <settings>
+            <label translate="true">Address</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+
+        <field name="city" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">City</label>
+                <dataType>text</dataType>
+                <dataScope>city</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magenest\Merchant\Model\Source\City"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="district" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">District</label>
+                <dataType>text</dataType>
+                <dataScope>district</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magenest\Merchant\Model\Source\District"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="ward" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">magenest_merchant</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Ward</label>
+                <dataType>text</dataType>
+                <dataScope>ward</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magenest\Merchant\Model\Source\Ward"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

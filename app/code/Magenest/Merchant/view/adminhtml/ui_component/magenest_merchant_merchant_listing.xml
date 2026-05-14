@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * app/code/Magenest/Merchant/view/adminhtml/ui_component/magenest_merchant_merchant_listing.xml
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">magenest_merchant_merchant_listing.magenest_merchant_merchant_listing_data_source</item>
+        </item>
+    </argument>
+
+    <settings>
+        <spinner>magenest_merchant_merchant_columns</spinner>
+        <deps>
+            <dep>magenest_merchant_merchant_listing.magenest_merchant_merchant_listing_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Merchant</label>
+            </button>
+        </buttons>
+    </settings>
+
+    <dataSource name="magenest_merchant_merchant_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Magenest_Merchant::merchant_manage</aclResource>
+        <dataProvider class="Magenest\Merchant\Ui\DataProvider\MerchantListing"
+                      name="magenest_merchant_merchant_listing_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete the selected merchants?</message>
+                        <title translate="true">Delete merchants</title>
+                    </confirm>
+                    <url path="magenest_merchant/merchant/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <columns name="magenest_merchant_merchant_columns">
+        <settings>
+            <editorConfig>
+                <param name="selectProvider" xsi:type="string">
+                    magenest_merchant_merchant_listing.magenest_merchant_merchant_listing.magenest_merchant_merchant_columns.ids
+                </param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="indexField" xsi:type="string">entity_id</param>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="magenest_merchant/merchant/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">
+                        magenest_merchant_merchant_listing.magenest_merchant_merchant_listing.magenest_merchant_merchant_columns_editor
+                    </item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+
+        <column name="entity_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="merchant_code" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Merchant ID</label>
+            </settings>
+        </column>
+
+        <column name="mc_phone" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <editor><editorType>text</editorType></editor>
+                <label translate="true">MC's Phone No.</label>
+            </settings>
+        </column>
+
+        <column name="store_name" sortOrder="40">
+            <settings>
+                <filter>text</filter>
+                <editor><editorType>text</editorType></editor>
+                <label translate="true">Store Name</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+            </settings>
+        </column>
+
+        <column name="category_ids" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Category</label>
+            </settings>
+        </column>
+
+        <column name="active_date" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="60">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Active Date</label>
+            </settings>
+        </column>
+
+        <column name="latest_update_date" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="70">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Latest Update Date</label>
+            </settings>
+        </column>
+
+        <column name="onboarding_date" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="80">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Onboarding Date</label>
+            </settings>
+        </column>
+
+        <column name="merchant_status" component="Magento_Ui/js/grid/columns/select" sortOrder="90">
+            <settings>
+                <options class="Magenest\Merchant\Model\Source\Status"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Merchant Status</label>
+            </settings>
+        </column>
+
+        <column name="kyc_level" sortOrder="100">
+            <settings>
+                <filter>text</filter>
+                <editor><editorType>text</editorType></editor>
+                <label translate="true">KYC Level</label>
+            </settings>
+        </column>
+
+        <column name="merchant_type" sortOrder="110">
+            <settings>
+                <filter>text</filter>
+                <editor><editorType>text</editorType></editor>
+                <label translate="true">Merchant Type</label>
+            </settings>
+        </column>
+
+        <column name="partner" sortOrder="120">
+            <settings>
+                <filter>text</filter>
+                <editor><editorType>text</editorType></editor>
+                <label translate="true">Partner</label>
+            </settings>
+        </column>
+
+        <column name="dsa_phone" sortOrder="130">
+            <settings>
+                <filter>text</filter>
+                <editor><editorType>text</editorType></editor>
+                <label translate="true">DSA's Phone No.</label>
+            </settings>
+        </column>
+
+        <column name="city" component="Magento_Ui/js/grid/columns/select" sortOrder="140">
+            <settings>
+                <options class="Magenest\Merchant\Model\Source\City"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">City</label>
+            </settings>
+        </column>
+
+        <column name="district" component="Magento_Ui/js/grid/columns/select" sortOrder="150">
+            <settings>
+                <options class="Magenest\Merchant\Model\Source\District"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">District</label>
+            </settings>
+        </column>
+
+        <column name="ward" component="Magento_Ui/js/grid/columns/select" sortOrder="160">
+            <settings>
+                <options class="Magenest\Merchant\Model\Source\Ward"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Ward</label>
+            </settings>
+        </column>
+
+        <actionsColumn name="actions" class="Magenest\Merchant\Ui\Component\Listing\Column\MerchantActions" sortOrder="200">
+            <settings>
+                <indexField>entity_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>
