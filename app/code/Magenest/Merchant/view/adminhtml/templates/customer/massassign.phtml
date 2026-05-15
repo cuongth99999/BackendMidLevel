@@ -1,0 +1,69 @@
+<?php
+/**
+ * Merchant picker shown after the customer-grid massaction.
+ * Submits to ../save which performs the bulk SQL assignment.
+ *
+ * @var \Magenest\Merchant\Block\Adminhtml\Customer\MassAssignMerchant $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$customerCount = $block->getCustomerCount();
+$options       = $block->getMerchantOptions();
+?>
+<div class="page-actions">
+    <a href="<?= $escaper->escapeUrl($block->getCancelUrl()) ?>"
+       class="action-default scalable back">
+        <span><?= $escaper->escapeHtml(__('Back')) ?></span>
+    </a>
+</div>
+
+<div class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $escaper->escapeHtml(
+            __('Assign Merchant to %1 Customer(s)', $customerCount)
+        ) ?></span>
+    </div>
+
+    <?php if ($customerCount === 0): ?>
+        <div class="message message-error">
+            <?= $escaper->escapeHtml(
+                __('No customer selection found in this session. Please go back and re-select.')
+            ) ?>
+        </div>
+    <?php else: ?>
+        <form action="<?= $escaper->escapeUrl($block->getSaveUrl()) ?>" method="post" id="massassign-merchant-form">
+            <?= /* @noEscape */ $block->getBlockHtml('formkey') ?>
+
+            <fieldset class="admin__fieldset">
+                <div class="admin__field _required">
+                    <label class="admin__field-label" for="merchant_id">
+                        <span><?= $escaper->escapeHtml(__('Merchant')) ?></span>
+                    </label>
+                    <div class="admin__field-control">
+                        <select id="merchant_id"
+                                name="merchant_id"
+                                required="required"
+                                class="admin__control-select">
+                            <?php foreach ($options as $option): ?>
+                                <option value="<?= $escaper->escapeHtmlAttr($option['value']) ?>">
+                                    <?= $escaper->escapeHtml($option['label']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="admin__form-actions" style="margin-top: 20px;">
+                <button type="submit" class="action-primary">
+                    <span><?= $escaper->escapeHtml(
+                        __('Assign to %1 Customer(s)', $customerCount)
+                    ) ?></span>
+                </button>
+                <a href="<?= $escaper->escapeUrl($block->getCancelUrl()) ?>"
+                   class="action-default" style="margin-left: 10px;">
+                    <span><?= $escaper->escapeHtml(__('Cancel')) ?></span>
+                </a>
+            </div>
+        </form>
+    <?php endif; ?>
+</div>

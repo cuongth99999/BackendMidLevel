@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+ * Layout for the "Assign Merchant" picker form (rendered after the
+ * customer grid massaction submits its selection to Edit::execute()).
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="admin-1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\Merchant\Block\Adminhtml\Customer\MassAssignMerchant"
+                   name="magenest_merchant.customer.massassign"
+                   template="Magenest_Merchant::customer/massassign.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
