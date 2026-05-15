@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var \Magenest\EventRegistration\Block\Adminhtml\Event\Sidebar $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$events     = $block->getEvents();
+$currentId  = $block->getCurrentEventId();
+$newUrl     = $block->getNewUrl();
+?>
+<aside class="eventregistration-sidebar">
+    <div class="eventregistration-sidebar__title">
+        <?= /* @noEscape */ $escaper->escapeHtml(__('ALL EVENTS')) ?>
+    </div>
+    <ul class="eventregistration-sidebar__list">
+        <?php foreach ($events as $event): ?>
+            <?php $id = (int) $event->getEntityId(); ?>
+            <li class="eventregistration-sidebar__item<?= $id === $currentId ? ' is-active' : '' ?>">
+                <a class="eventregistration-sidebar__link"
+                   href="<?= $escaper->escapeUrl($block->getEditUrl($id)) ?>">
+                    <?= $escaper->escapeHtml($event->getName() ?: __('(unnamed)')) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+        <li class="eventregistration-sidebar__item eventregistration-sidebar__item--add">
+            <a class="eventregistration-sidebar__link eventregistration-sidebar__link--add"
+               href="<?= $escaper->escapeUrl($newUrl) ?>">
+                <?= $escaper->escapeHtml(__('+ Add New Event')) ?>
+            </a>
+        </li>
+    </ul>
+</aside>

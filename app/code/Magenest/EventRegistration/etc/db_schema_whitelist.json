@@ -1,0 +1,40 @@
+{
+    "magenest_event": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "days_before_event": true,
+            "event_date": true,
+            "sort_order": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MAGENEST_EVENT_SORT_ORDER": true,
+            "MAGENEST_EVENT_EVENT_DATE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "magenest_event_schedule": {
+        "column": {
+            "entity_id": true,
+            "event_id": true,
+            "day_of_week": true,
+            "schedule_date": true,
+            "details_message": true,
+            "event_time": true,
+            "position": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MAGENEST_EVENT_SCHEDULE_EVENT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_EVT_SCH_EVT_ID_MAGENEST_EVT_ENT_ID": true
+        }
+    }
+}

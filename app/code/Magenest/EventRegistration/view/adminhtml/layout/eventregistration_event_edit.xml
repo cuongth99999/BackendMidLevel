@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="admin-1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magenest_EventRegistration::css/module.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="eventregistration.workspace" htmlTag="div" htmlClass="eventregistration-workspace">
+                <block class="Magenest\EventRegistration\Block\Adminhtml\Event\Sidebar"
+                       name="eventregistration.event.sidebar"
+                       template="Magenest_EventRegistration::event/sidebar.phtml"/>
+                <uiComponent name="eventregistration_event_form"/>
+            </container>
+        </referenceContainer>
+    </body>
+</page>
