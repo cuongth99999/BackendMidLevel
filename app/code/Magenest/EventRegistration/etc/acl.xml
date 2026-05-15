@@ -9,6 +9,8 @@
                         <resource id="Magenest_EventRegistration::event_save" title="Save Event" sortOrder="10"/>
                         <resource id="Magenest_EventRegistration::event_delete" title="Delete Event" sortOrder="20"/>
                     </resource>
+                    <resource id="Magenest_EventRegistration::event_register"
+                              title="Mass Register Customers to Event" sortOrder="20"/>
                 </resource>
             </resource>
         </resources>

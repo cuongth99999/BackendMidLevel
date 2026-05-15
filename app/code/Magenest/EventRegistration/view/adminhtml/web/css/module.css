@@ -114,3 +114,32 @@
     font-size: 11px;
     margin-top: 4px;
 }
+
+/* Mass register modal */
+.magenest-event-register-modal .modal-inner-wrap {
+    max-width: 560px;
+}
+
+/* Hide the modal template body in the page flow until the modal widget wraps it */
+.magenest-event-register-modal__body {
+    display: none;
+    padding: 8px 0 4px;
+}
+
+.modal-popup .magenest-event-register-modal__body {
+    display: block;
+}
+
+.magenest-event-register-modal__body .admin__field {
+    margin-bottom: 16px;
+}
+
+.magenest-event-register-modal__body select.admin__control-select,
+.magenest-event-register-modal__body textarea.admin__control-textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.magenest-event-register-modal__body .admin__field-note.magenest-warn {
+    color: #c33;
+}

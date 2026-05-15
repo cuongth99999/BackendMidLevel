@@ -10,6 +10,12 @@
                 type="Magenest\EventRegistration\Model\EventRepository"/>
     <preference for="Magenest\EventRegistration\Api\EventScheduleRepositoryInterface"
                 type="Magenest\EventRegistration\Model\EventScheduleRepository"/>
+    <preference for="Magenest\EventRegistration\Api\Data\EventRegistrationInterface"
+                type="Magenest\EventRegistration\Model\EventRegistration"/>
+    <preference for="Magenest\EventRegistration\Api\EventRegistrationRepositoryInterface"
+                type="Magenest\EventRegistration\Model\EventRegistrationRepository"/>
+    <preference for="Magenest\EventRegistration\Api\Data\MassRegisterRequestInterface"
+                type="Magenest\EventRegistration\Model\Queue\MassRegisterRequest"/>
 
     <virtualType name="Magenest\EventRegistration\Model\ResourceModel\Event\Grid\Collection"
                  type="Magenest\EventRegistration\Model\ResourceModel\Event\Collection">

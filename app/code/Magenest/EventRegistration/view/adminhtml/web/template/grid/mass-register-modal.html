@@ -1,0 +1,53 @@
+<div class="magenest-event-register-modal__body">
+
+    <div class="admin__field _required">
+        <label class="admin__field-label" translate="'Event'"></label>
+        <div class="admin__field-control">
+            <select class="admin__control-select"
+                    data-bind="
+                        options: events,
+                        optionsValue: 'id',
+                        optionsText: 'name',
+                        optionsCaption: $t('-- Select an event --'),
+                        value: selectedEventId,
+                        disable: loadingEvents,
+                        event: { change: onEventChanged.bind($data) }">
+            </select>
+            <!-- ko if: loadingEvents -->
+            <span class="admin__field-note" translate="'Loading events...'"></span>
+            <!-- /ko -->
+        </div>
+    </div>
+
+    <div class="admin__field _required" data-bind="visible: selectedEventId">
+        <label class="admin__field-label" translate="'Event Time'"></label>
+        <div class="admin__field-control">
+            <select class="admin__control-select"
+                    data-bind="
+                        options: schedules,
+                        optionsValue: 'id',
+                        optionsText: 'label',
+                        optionsCaption: $t('-- Select an event time --'),
+                        value: selectedScheduleId,
+                        disable: loadingSchedules">
+            </select>
+            <!-- ko if: loadingSchedules -->
+            <span class="admin__field-note" translate="'Loading event times...'"></span>
+            <!-- /ko -->
+            <!-- ko if: !loadingSchedules && selectedEventId && schedules.length === 0 -->
+            <span class="admin__field-note magenest-warn"
+                  translate="'This event has no schedule rows yet.'"></span>
+            <!-- /ko -->
+        </div>
+    </div>
+
+    <div class="admin__field">
+        <label class="admin__field-label" translate="'Note'"></label>
+        <div class="admin__field-control">
+            <textarea class="admin__control-textarea"
+                      rows="3"
+                      placeholder="Optional note recorded with every registered customer."
+                      data-bind="textInput: note"></textarea>
+        </div>
+    </div>
+</div>

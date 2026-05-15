@@ -36,5 +36,27 @@
             "PRIMARY": true,
             "MAGENEST_EVT_SCH_EVT_ID_MAGENEST_EVT_ENT_ID": true
         }
+    },
+    "magenest_event_registration": {
+        "column": {
+            "entity_id": true,
+            "customer_id": true,
+            "event_id": true,
+            "schedule_id": true,
+            "note": true,
+            "status": true,
+            "created_at": true
+        },
+        "index": {
+            "MAGENEST_EVT_REG_EVENT_ID": true,
+            "MAGENEST_EVT_REG_SCHEDULE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGENEST_EVT_REG_CUST_SCHED": true,
+            "MAGENEST_EVT_REG_CUST_ID_CUST_ENT_ENT_ID": true,
+            "MAGENEST_EVT_REG_EVT_ID_MAGENEST_EVT_ENT_ID": true,
+            "MAGENEST_EVT_REG_SCH_ID_MAG_EVT_SCH_ENT_ID": true
+        }
     }
 }

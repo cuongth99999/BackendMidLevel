@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="magenest_register_event">
+                <settings>
+                    <type>magenest_register_event</type>
+                    <label translate="true">Register Event</label>
+                    <callback>
+                        <target>openModal</target>
+                        <provider>customer_listing.customer_listing.eventregistration_mass_register</provider>
+                    </callback>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+
+    <container name="eventregistration_mass_register"
+               component="Magenest_EventRegistration/js/grid/mass-register-action"
+               sortOrder="99">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="provider" xsi:type="string">customer_listing.customer_listing</item>
+                <item name="customerProvider" xsi:type="string">customer_listing.customer_listing_data_source</item>
+                <item name="eventsUrl" xsi:type="url" path="eventregistration/register/eventoptions"/>
+                <item name="schedulesUrl" xsi:type="url" path="eventregistration/register/eventtimes"/>
+                <item name="submitUrl" xsi:type="url" path="eventregistration/register/massregister"/>
+            </item>
+        </argument>
+    </container>
+</listing>
