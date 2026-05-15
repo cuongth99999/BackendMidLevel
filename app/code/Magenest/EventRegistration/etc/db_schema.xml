@@ -50,4 +50,47 @@
                     referenceTable="magenest_event" referenceColumn="entity_id"
                     onDelete="CASCADE"/>
     </table>
+
+    <table name="magenest_event_registration" resource="default" engine="innodb"
+           comment="Magenest Event Registration (customer ↔ schedule slot)">
+        <column xsi:type="int"       name="entity_id"   unsigned="true" nullable="false" identity="true" comment="Registration ID"/>
+        <column xsi:type="int"       name="customer_id" unsigned="true" nullable="false" comment="Customer ID"/>
+        <column xsi:type="int"       name="event_id"    unsigned="true" nullable="false" comment="Event ID"/>
+        <column xsi:type="int"       name="schedule_id" unsigned="true" nullable="false" comment="Schedule Row ID"/>
+        <column xsi:type="text"      name="note"        nullable="true"  comment="Admin Note"/>
+        <column xsi:type="varchar"   name="status"      length="32" nullable="false" default="processed" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at"  on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <constraint xsi:type="unique" referenceId="MAGENEST_EVT_REG_CUST_SCHED">
+            <column name="customer_id"/>
+            <column name="schedule_id"/>
+        </constraint>
+
+        <index referenceId="MAGENEST_EVT_REG_EVENT_ID" indexType="btree">
+            <column name="event_id"/>
+        </index>
+        <index referenceId="MAGENEST_EVT_REG_SCHEDULE_ID" indexType="btree">
+            <column name="schedule_id"/>
+        </index>
+
+        <constraint xsi:type="foreign"
+                    referenceId="MAGENEST_EVT_REG_CUST_ID_CUST_ENT_ENT_ID"
+                    table="magenest_event_registration" column="customer_id"
+                    referenceTable="customer_entity" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign"
+                    referenceId="MAGENEST_EVT_REG_EVT_ID_MAGENEST_EVT_ENT_ID"
+                    table="magenest_event_registration" column="event_id"
+                    referenceTable="magenest_event" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+        <constraint xsi:type="foreign"
+                    referenceId="MAGENEST_EVT_REG_SCH_ID_MAG_EVT_SCH_ENT_ID"
+                    table="magenest_event_registration" column="schedule_id"
+                    referenceTable="magenest_event_schedule" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+    </table>
 </schema>
