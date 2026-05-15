@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">eventregistration_event_form.eventregistration_event_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Event</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Magenest\EventRegistration\Block\Adminhtml\Event\Edit\BackButton"/>
+            <button name="delete" class="Magenest\EventRegistration\Block\Adminhtml\Event\Edit\DeleteButton"/>
+            <button name="reset" class="Magenest\EventRegistration\Block\Adminhtml\Event\Edit\ResetButton"/>
+            <button name="save_and_continue" class="Magenest\EventRegistration\Block\Adminhtml\Event\Edit\SaveAndContinueButton"/>
+            <button name="save" class="Magenest\EventRegistration\Block\Adminhtml\Event\Edit\SaveButton"/>
+        </buttons>
+        <namespace>eventregistration_event_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>eventregistration_event_form.eventregistration_event_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="eventregistration_event_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Magenest\EventRegistration\Model\Event\DataProvider"
+                      name="eventregistration_event_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="event_details">
+        <settings>
+            <label translate="true">Event Details</label>
+            <collapsible>false</collapsible>
+        </settings>
+
+        <field name="entity_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>entity_id</dataScope>
+                <visible>false</visible>
+            </settings>
+        </field>
+
+        <field name="name" formElement="input" sortOrder="10">
+            <settings>
+                <label translate="true">Event Name</label>
+                <dataType>text</dataType>
+                <dataScope>name</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="days_before_event" formElement="input" sortOrder="20">
+            <settings>
+                <label translate="true">Days before Event</label>
+                <dataType>text</dataType>
+                <dataScope>days_before_event</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="event_date" formElement="date" sortOrder="30">
+            <settings>
+                <label translate="true">Event Date</label>
+                <dataType>text</dataType>
+                <dataScope>event_date</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-date" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="sort_order" formElement="input" sortOrder="40">
+            <settings>
+                <label translate="true">Sort Order</label>
+                <dataType>text</dataType>
+                <dataScope>sort_order</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+
+    <fieldset name="schedule_fieldset">
+        <settings>
+            <label translate="true">Default Schedule</label>
+            <collapsible>false</collapsible>
+        </settings>
+
+        <dynamicRows name="schedule" sortOrder="10" component="Magenest_EventRegistration/js/form/dynamic-rows-schedule">
+            <settings>
+                <addButton>false</addButton>
+                <columnsHeader>true</columnsHeader>
+                <deleteProperty>false</deleteProperty>
+                <componentType>dynamicRows</componentType>
+                <dataScope>schedule</dataScope>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">false</param>
+                </dndConfig>
+                <imports>
+                    <link name="daysBefore">${ $.provider }:data.days_before_event</link>
+                    <link name="eventDate">${ $.provider }:data.event_date</link>
+                </imports>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="positionProvider" xsi:type="string">position</item>
+                    </item>
+                </argument>
+
+                <field name="position" formElement="input">
+                    <settings>
+                        <dataType>number</dataType>
+                        <dataScope>position</dataScope>
+                        <visible>false</visible>
+                    </settings>
+                </field>
+
+                <field name="day_of_week" formElement="input">
+                    <settings>
+                        <label translate="true">Day</label>
+                        <dataType>text</dataType>
+                        <dataScope>day_of_week</dataScope>
+                        <disabled>true</disabled>
+                    </settings>
+                </field>
+
+                <field name="schedule_date" formElement="input">
+                    <settings>
+                        <label translate="true">Date</label>
+                        <dataType>text</dataType>
+                        <dataScope>schedule_date</dataScope>
+                        <disabled>true</disabled>
+                    </settings>
+                </field>
+
+                <field name="event_time" formElement="input">
+                    <settings>
+                        <label translate="true">Event Time</label>
+                        <dataType>text</dataType>
+                        <dataScope>event_time</dataScope>
+                        <notice translate="true">Format: h:mm a (e.g. 4:30 PM)</notice>
+                    </settings>
+                </field>
+
+                <field name="details_message" formElement="input">
+                    <settings>
+                        <label translate="true">Details Message</label>
+                        <dataType>text</dataType>
+                        <dataScope>details_message</dataScope>
+                    </settings>
+                </field>
+            </container>
+        </dynamicRows>
+    </fieldset>
+</form>

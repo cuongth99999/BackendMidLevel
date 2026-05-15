@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="magenest_event" resource="default" engine="innodb"
+           comment="Magenest Event">
+        <column xsi:type="int"       name="entity_id"         unsigned="true" nullable="false" identity="true" comment="Event ID"/>
+        <column xsi:type="varchar"   name="name"              nullable="false" length="255"     comment="Event Name"/>
+        <column xsi:type="smallint"  name="days_before_event" unsigned="true" nullable="false" default="1" comment="Days Before Event"/>
+        <column xsi:type="date"      name="event_date"        nullable="false" comment="Event Date"/>
+        <column xsi:type="int"       name="sort_order"        nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="timestamp" name="created_at"        on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at"        on_update="true"  nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <index referenceId="MAGENEST_EVENT_SORT_ORDER" indexType="btree">
+            <column name="sort_order"/>
+        </index>
+        <index referenceId="MAGENEST_EVENT_EVENT_DATE" indexType="btree">
+            <column name="event_date"/>
+        </index>
+    </table>
+
+    <table name="magenest_event_schedule" resource="default" engine="innodb"
+           comment="Magenest Event Default Schedule">
+        <column xsi:type="int"       name="entity_id"       unsigned="true" nullable="false" identity="true" comment="Schedule Row ID"/>
+        <column xsi:type="int"       name="event_id"        unsigned="true" nullable="false" comment="Parent Event ID"/>
+        <column xsi:type="varchar"   name="day_of_week"     nullable="false" length="16"     comment="Day Of Week (Monday..Sunday)"/>
+        <column xsi:type="date"      name="schedule_date"   nullable="false" comment="Schedule Date"/>
+        <column xsi:type="text"      name="details_message" nullable="true"  comment="Details Message"/>
+        <column xsi:type="varchar"   name="event_time"      nullable="true"  length="8" comment="Event Time (HH:MM:SS)"/>
+        <column xsi:type="int"       name="position"        unsigned="true" nullable="false" default="0" comment="Row Position"/>
+        <column xsi:type="timestamp" name="created_at"      on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at"      on_update="true"  nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <index referenceId="MAGENEST_EVENT_SCHEDULE_EVENT_ID" indexType="btree">
+            <column name="event_id"/>
+        </index>
+
+        <constraint xsi:type="foreign"
+                    referenceId="MAGENEST_EVT_SCH_EVT_ID_MAGENEST_EVT_ENT_ID"
+                    table="magenest_event_schedule" column="event_id"
+                    referenceTable="magenest_event" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+    </table>
+</schema>
