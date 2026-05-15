@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * app/code/Magenest/Merchant/view/adminhtml/ui_component/customer_listing.xml
+ *
+ * Adds an "Assign Merchant" massaction to the stock customer grid.
+ * The action POSTs the selection (selected[]/excluded[]+namespace+filters)
+ * to our Edit controller, which resolves the IDs via Ui\MassAction\Filter,
+ * stashes them in the admin session, and renders the merchant picker form.
+ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="assign_merchant">
+                <settings>
+                    <type>assign_merchant</type>
+                    <label translate="true">Assign Merchant</label>
+                    <url path="magenest_merchant/customer_massassignmerchant/edit"/>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>
