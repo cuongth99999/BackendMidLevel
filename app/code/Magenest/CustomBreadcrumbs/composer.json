@@ -1,0 +1,21 @@
+{
+    "name": "magenest/module-custom-breadcrumbs",
+    "description": "PDP breadcrumbs driven by a per-category Use as Main Breadcrumb flag.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-theme": "*",
+        "magento/module-store": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magenest\\CustomBreadcrumbs\\": ""
+        }
+    }
+}

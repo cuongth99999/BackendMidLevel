@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+
+/** @var \Magento\Theme\Block\Html\Breadcrumbs $block */
+/** @var \Magenest\CustomBreadcrumbs\ViewModel\Product\Breadcrumbs $viewModel */
+$viewModel = $block->getData('viewModel');
+$crumbs    = $viewModel->getCrumbs();
+?>
+<?php if (!empty($crumbs)): ?>
+<div class="breadcrumbs">
+    <ul class="items">
+        <?php foreach ($crumbs as $i => $crumb): ?>
+            <li class="item">
+                <?php if ($crumb['link'] !== ''): ?>
+                    <a href="<?= $block->escapeUrl($crumb['link']) ?>"
+                       title="<?= $block->escapeHtmlAttr($crumb['title']) ?>">
+                        <?= $block->escapeHtml($crumb['label']) ?>
+                    </a>
+                <?php elseif ($crumb['last']): ?>
+                    <strong><?= $block->escapeHtml($crumb['label']) ?></strong>
+                <?php else: ?>
+                    <?= $block->escapeHtml($crumb['label']) ?>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>
