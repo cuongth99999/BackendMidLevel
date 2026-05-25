@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * app/code/Magenest/ProductCategoriesGrid/view/adminhtml/ui_component/product_listing.xml
+ *
+ * - Adds a "Categories" column to the admin product grid.
+ *   Uses the base column component so the cell renders the raw escaped HTML
+ *   from Magenest\ProductCategoriesGrid\Ui\Component\Listing\Column\Categories
+ *   (Magento_Ui/js/grid/columns/select would map the value to option labels
+ *    and silently blank the cell).
+ *
+ * - The column-header filter is the default Magento single-select — it works
+ *   out of the box and shows category options.
+ *
+ * - The top "Filters" panel gets a dedicated multi-select+search filter via
+ *   <filterSelect> with filterOptions=true. Pattern from Magento_MediaGalleryUi.
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters">
+            <filterSelect name="magenest_categories"
+                          provider="${ $.parentName }"
+                          sortOrder="20"
+                          component="Magento_Ui/js/grid/filters/elements/ui-select"
+                          template="ui/grid/filters/elements/ui-select">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="filterOptions"    xsi:type="boolean">true</item>
+                        <item name="multiple"         xsi:type="boolean">true</item>
+                        <item name="chipsEnabled"     xsi:type="boolean">true</item>
+                        <item name="levelsVisibility" xsi:type="number">1</item>
+                        <item name="filterPlaceholder" xsi:type="string" translate="true">Search category by name</item>
+                    </item>
+                </argument>
+                <settings>
+                    <caption translate="true">Select category</caption>
+                    <label translate="true">Categories</label>
+                    <dataScope>magenest_categories</dataScope>
+                    <options class="Magenest\ProductCategoriesGrid\Ui\Component\Listing\Column\Filter\CategoryOptions"/>
+                </settings>
+            </filterSelect>
+        </filters>
+    </listingToolbar>
+
+    <columns name="product_columns">
+        <column name="magenest_categories"
+                class="Magenest\ProductCategoriesGrid\Ui\Component\Listing\Column\Categories"
+                sortOrder="85">
+            <settings>
+                <!-- No column-header filter; the multi-select+search filter
+                     lives in the top "Filters" panel above (filterSelect). -->
+                <dataType>text</dataType>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <label translate="true">Categories</label>
+                <sortable>false</sortable>
+                <visible>true</visible>
+            </settings>
+        </column>
+    </columns>
+
+</listing>

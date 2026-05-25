@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+ * app/code/Magenest/ProductCategoriesGrid/etc/adminhtml/di.xml
+ * Wire the category filter strategy onto the product grid data provider.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider">
+        <arguments>
+            <argument name="addFilterStrategies" xsi:type="array">
+                <item name="magenest_categories" xsi:type="object">Magenest\ProductCategoriesGrid\Model\Filter\CategoryFilter</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>
