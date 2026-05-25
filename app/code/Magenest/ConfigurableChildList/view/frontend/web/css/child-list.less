@@ -1,0 +1,144 @@
+// app/code/Magenest/ConfigurableChildList/view/frontend/web/css/child-list.less
+//
+// Per-child product card list styled to blend with default Magento Luma.
+
+.magenest-child-list {
+    margin-top: 20px;
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__empty {
+        margin: 0;
+        padding: 12px 15px;
+        color: #757575;
+        font-style: italic;
+        text-align: center;
+        border: 1px dashed #cccccc;
+        border-radius: 3px;
+        background: #fafafa;
+
+        &:empty {
+            display: none;
+        }
+    }
+}
+
+.magenest-child-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    background: #ffffff;
+    transition: border-color .15s ease-out, box-shadow .15s ease-out;
+
+    &:hover {
+        border-color: #1979c3;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+    }
+
+    &--disabled {
+        opacity: .65;
+
+        &:hover {
+            border-color: #cccccc;
+            box-shadow: none;
+        }
+    }
+
+    &__media {
+        flex: 0 0 80px;
+
+        img {
+            display: block;
+            max-width: 80px;
+            height: auto;
+        }
+    }
+
+    &__info {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    &__name {
+        display: block;
+        margin-bottom: 4px;
+        color: #333333;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    &__sku {
+        margin-bottom: 4px;
+        color: #757575;
+        font-size: 1.2rem;
+    }
+
+    &__desc {
+        color: #4a4a4a;
+        font-size: 1.3rem;
+        line-height: 1.4;
+    }
+
+    &__buy {
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+        min-width: 180px;
+    }
+
+    &__price {
+        color: #1979c3;
+        font-size: 1.8rem;
+        font-weight: 700;
+
+        .price {
+            color: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: stretch;
+        gap: 8px;
+
+        .qty {
+            width: 60px;
+            height: 36px;
+            padding: 4px 6px;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .action.primary {
+            white-space: nowrap;
+            line-height: 1;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .magenest-child-card {
+        flex-wrap: wrap;
+
+        &__buy {
+            flex: 1 1 100%;
+            align-items: stretch;
+            min-width: 0;
+        }
+
+        &__actions {
+            justify-content: space-between;
+        }
+    }
+}
