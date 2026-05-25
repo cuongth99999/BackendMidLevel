@@ -1,0 +1,22 @@
+{
+    "name": "magenest/module-configurable-child-list",
+    "description": "PDP override: render configurable last-attribute as a filterable child product list with per-child qty + add to cart.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-configurable-product": "*",
+        "magento/module-checkout": "*",
+        "magento/module-customer": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magenest\\ConfigurableChildList\\": ""
+        }
+    }
+}

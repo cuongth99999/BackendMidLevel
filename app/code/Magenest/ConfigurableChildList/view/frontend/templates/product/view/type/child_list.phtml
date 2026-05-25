@@ -1,0 +1,15 @@
+<?php
+/**
+ * app/code/Magenest/ConfigurableChildList/view/frontend/templates/product/view/type/child_list.phtml
+ *
+ * @var \Magenest\ConfigurableChildList\Block\Product\View\Type\ChildList $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<?php if ($block->shouldRender()): ?>
+    <div class="magenest-child-list"
+         data-mage-init='{"Magenest_ConfigurableChildList/js/child-list": <?= /* @noEscape */ $block->getChildListConfig() ?>}'>
+        <div class="magenest-child-list__items" data-role="items"></div>
+        <p class="magenest-child-list__empty" data-role="empty"></p>
+    </div>
+<?php endif; ?>
